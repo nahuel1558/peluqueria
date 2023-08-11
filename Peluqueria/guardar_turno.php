@@ -1,7 +1,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST["nombre"];
-    $fecha_hora = $_POST["fecha_hora"];
+    $dia = $_POST["dia"];
+    $hora = $_POST["hora"];
 
     // Conexión a la base de datos (modificar según corresponda)
     $servername = "localhost";
@@ -15,10 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO turnos (nombre, fecha_hora) VALUES ('$nombre', '$fecha_hora')";
+    $sql = "INSERT INTO turnos (nombre, dia, hora) VALUES ('$nombre', '$dia', '$hora')";
     
     if ($conn->query($sql) === TRUE) {
-        echo "Turno solicitado exitosamente. Tu turno es para $fecha_hora.";
+        echo "Turno solicitado exitosamente. Tu turno es para el $dia a las $hora.";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -31,5 +32,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Redirigir nuevamente a la página admin.php después de 2 segundos
   setTimeout(function() {
     window.location.href = "index.php";
-  }, 1000); // Cambiar a la cantidad de milisegundos que desees
+  }, 1000);
 </script>

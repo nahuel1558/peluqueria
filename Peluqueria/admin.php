@@ -16,31 +16,28 @@
         <th>Acciones</th>
       </tr>
       <?php
-      // Conexión a la base de datos (modificar según corresponda)
       $servername = "localhost";
       $username = "root";
       $password = "";
       $dbname = "peluqueria";
-
       $conn = new mysqli($servername, $username, $password, $dbname);
 
       if ($conn->connect_error) {
         die("Error de conexión: " . $conn->connect_error);
       }
-
-      // Consulta para obtener los turnos solicitados
+      
       $sql = "SELECT * FROM turnos";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $nombre = $row["nombre"];
-          $dia = $row["dia"]; // Obtener el día almacenado en la base de datos
-          $hora = $row["hora"]; // Obtener la hora almacenada en la base de datos
+          $dia = $row["dia"];
+          $hora = $row["hora"];
           $id = $row["id"];
           echo "<tr>";
-          echo "<td>$dia</td>"; // Mostrar el día almacenado en la base de datos
-          echo "<td>$hora</td>"; // Mostrar la hora almacenada en la base de datos
+          echo "<td>$dia</td>";
+          echo "<td>$hora</td>";
           echo "<td>$nombre</td>";
           echo "<td><a href='eliminar_turno.php?id=$id'>Eliminar</a></td>";
           echo "</tr>";
